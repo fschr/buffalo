@@ -2,7 +2,7 @@ __author__ = "Thomas Fischer"
 import pygame
 
 from buffalo import utils
-import menu
+from buffalo.examples import menu
 
 def main():
 

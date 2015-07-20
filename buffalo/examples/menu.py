@@ -7,8 +7,11 @@ from buffalo.button import Button
 
 def init():
 
+    global BACKGROUND_COLOR
     global buttons
-    global labels 
+    global labels
+
+    BACKGROUND_COLOR = (0, 170, 0, 0)
 
     buttons = set([])
     labels = set([])

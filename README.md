@@ -2,6 +2,30 @@
 
 Buffalo is an extremely lightweight Python module to assist rapid Pygame development. The source includes labels, buttons, and basic utilities.
 
+# Installing Buffalo
+
+To install Buffalo, simply download a copy of the source
+
+```
+git clone https://github.com/gragas/buffalo/
+```
+
+Navigate to cloned repository and install it
+
+```
+python3 setup.py install
+```
+
+# Testing Buffalo
+
+To test Buffalo, run the following command
+
+```
+python3 -m buffalo.examples.main
+```
+
+A fullscreen Pygame program should appear with an horizontally-centered exit button and a label aligned with the lower left corner.
+
 # Examples
 
 To begin rapid Pygame development, use the example files as a basic template:
@@ -68,13 +92,16 @@ from buffalo.label import Label
 from buffalo.button import Button
 ```
 
-Write the initialization code
+Write some initialization code
 
 ```
 def init():
 
+    global BACKGROUND_COLOR
     global buttons
-    global labels 
+    global labels
+
+    BACKGROUND_COLOR = (0, 170, 0, 0)
 
     buttons = set([])
     labels = set([])
