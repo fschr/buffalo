@@ -10,24 +10,29 @@ To begin rapid Pygame development, use the example files as a basic template:
 
 Import necessary modules
 
-```import pygame
+```
+import pygame
 
 from buffalo import utils
-import menu```
+import menu
+```
 
 Create the main loop
 
-```def main():
+```
+def main():
 
     while not utils.end:
         utils.logic()
         utils.update()
         utils.render()
-        utils.delta = utils.clock.tick( utils.FRAMES_PER_SECOND )```
+        utils.delta = utils.clock.tick( utils.FRAMES_PER_SECOND )
+```
 
 Initialize everything
 
-```if __name__ == "__main__":
+```
+if __name__ == "__main__":
     
     if not utils.init( 
         logic_func=menu.logic, 
@@ -42,9 +47,11 @@ Initialize everything
 
 Call the main loop and destruct Pygame upon completion
 
-```    main()
+```
+    main()
 
-    pygame.quit()```
+    pygame.quit()
+```
 
 ### menu.py
 
@@ -52,25 +59,30 @@ This file represents the main menu.
 
 First, import necessary modules
 
-```import pygame
+```
+import pygame
 
 from buffalo import utils
 from buffalo.label import Label
-from buffalo.button import Button```
+from buffalo.button import Button
+```
 
 Write the initialization code
 
-```def init():
+```
+def init():
 
     global buttons
     global labels 
 
     buttons = set([])
-    labels = set([])```
+    labels = set([])
+```
 
 Add some labels and buttons here, too:
 
-```    label_version = Label(
+```
+    label_version = Label(
         (5, utils.SCREEN_H - 5),
         "Buffalo Program 0.0 alpha + July 15th, 2015",
         invert_y_pos=True,
@@ -85,21 +97,25 @@ Add some labels and buttons here, too:
         feathering=10,
         func=exit,
         )
-    buttons.add( button_exit )```
+    buttons.add( button_exit )
+```
 
 Next, define the logic of the main menu. First, basic events and keyboard input
 
-```def logic():
+```
+def logic():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             utils.end = True
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                utils.end = True```
+                utils.end = True
+```
 
 Then, mouse input and button interaction
 
-```        elif event.type == pygame.MOUSEBUTTONDOWN:
+```
+        elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             for button in buttons:
                 if button.get_rect().collidepoint( mouse_pos ):
@@ -110,16 +126,20 @@ Then, mouse input and button interaction
                 button.set_selected(False)
                 if button.get_rect().collidepoint( mouse_pos ):
                     if button.func is not None:
-                        button.func()```
+                        button.func()
+```
 
 Describe the update function (The update function is a function that gets called at a certain interval, independent of a user's frames per second. In this case, it's empty)
 
-```def update():
-    pass```
+```
+def update():
+    pass
+```
 
 And finally, describe the render function
 
-```def render():
+```
+def render():
     utils.screen.fill( BACKGROUND_COLOR )
 
     for label in labels:
@@ -127,4 +147,5 @@ And finally, describe the render function
     for button in buttons:
         button.blit( utils.screen )
 
-    pygame.display.update()```
+    pygame.display.update()
+```
