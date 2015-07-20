@@ -1,3 +1,4 @@
+__author__ = "Thomas Fischer"
 from math import pi
 
 import pygame

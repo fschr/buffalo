@@ -1,4 +1,4 @@
-# buffalo
+# Buffalo
 
 Buffalo is an extremely lightweight Python module to assist rapid Pygame development. The source includes labels, buttons, and basic utilities.
 
@@ -150,3 +150,7 @@ def render():
 
     pygame.display.update()
 ```
+
+# License and Redistribution
+
+This project licensed under the GNU GENERAL PUBLIC LICENSE version 2. Everyone is free to use, modify, or redistribute this code, as long as it is noted that the original author is me, Thomas Fischer.

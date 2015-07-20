@@ -1,3 +1,4 @@
+__author__ = "Thomas Fischer"
 import pygame
 import pygame.font
 
