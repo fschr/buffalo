@@ -43,7 +43,8 @@ if __name__ == "__main__":
         pygame.quit()
         exit()
 
-    menu.init()```
+    menu.init()
+```
 
 Call the main loop and destruct Pygame upon completion
 
