@@ -4,6 +4,7 @@ except ImportError:
     from distutils.core import setup
 
 setup(name='buffalo',
-      version='1.0',
-      py_modules=['pygame'],      
+      author='Thomas D. Fischer',
+      version='1.0.1',
+      py_modules=['buffalo', 'buffalo.examples'],
       )

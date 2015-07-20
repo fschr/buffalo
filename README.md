@@ -16,6 +16,8 @@ Navigate to cloned repository and install it
 python3 setup.py install
 ```
 
+Of course, Buffalo requires Pygame.
+
 # Testing Buffalo
 
 To test Buffalo, run the following command
