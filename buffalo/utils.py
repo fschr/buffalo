@@ -68,3 +68,4 @@ def init( logic_func=None,
         }
     
     return True
+
