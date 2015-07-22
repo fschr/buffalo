@@ -19,7 +19,7 @@ class Button:
                  invert_x_pos=False,
                  x_centered=False,
                  y_centered=False,
-                 feathering=10,
+                 feathering=15,
                  func=None,
                  ):
         self.label = Label(

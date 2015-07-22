@@ -64,7 +64,9 @@ def init( logic_func=None,
     DEFAULT_FONT = "arial"
     fonts = {
         'default': pygame.font.SysFont(DEFAULT_FONT, 18),
-        'droidsans14': pygame.font.SysFont("droidsans", 18),
+        'droidsans18': pygame.font.SysFont("droidsans", 18),
+        'droidsans24': pygame.font.SysFont("droidsans", 24),
+        'droidsans14': pygame.font.SysFont("droidsans", 14),
         }
     
     return True
