@@ -54,8 +54,9 @@ class Button:
             self.pos = (self.pos[0], self.pos[1] - self.size[1] / 2)
     
     def set_selected( self, value ):
-        self.selected = value
-        self.render()
+        if not self.selected == value:
+            self.selected = value
+            self.render()
 
     def get_rect(self):
         return pygame.Rect( self.pos, self.size )
