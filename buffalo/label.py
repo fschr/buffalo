@@ -25,7 +25,7 @@ class Label:
         if invert_y_pos:
             self.pos = (self.pos[0], self.pos[1] - self.surface.get_size()[1])
         if invert_x_pos:
-            self.pos = (self.pos[0] + self.surface.get_size()[0], self.pos[1])
+            self.pos = (self.pos[0] - self.surface.get_size()[0], self.pos[1])
         if x_centered:
             self.pos = (self.pos[0] - self.surface.get_size()[0] / 2, self.pos[1])
         if y_centered:

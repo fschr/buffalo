@@ -32,6 +32,14 @@ class Option:
         self.sel_color = sel_color
         self.padding = padding
         self.render()
+        if invert_y_pos:
+            self.pos = (self.pos[0], self.pos[1] - self.size[1])
+        if invert_x_pos:
+            self.pos = (self.pos[0] - self.size[0], self.pos[1])
+        if x_centered:
+            self.pos = (self.pos[0] - self.size[0] / 2, self.pos[1])
+        if y_centered:
+            self.pos = (self.pos[0], self.pos[1] - self.size[1] / 2)
 
     def go_right(self):
         self.index += 1
