@@ -18,7 +18,9 @@ class Option(object):
                  y_centered=False,
                  a_color=(0, 100, 200, 255),
                  sel_color=(0, 50, 100, 255),
-                 padding=10
+                 padding=10,
+                 rfunc=None,
+                 lfunc=None,
                  ):
         self.pos = pos
         self.data = data
@@ -31,6 +33,8 @@ class Option(object):
         self.a_color = a_color
         self.sel_color = sel_color
         self.padding = padding
+        self.rfunc = rfunc
+        self.lfunc = lfunc
         self.render()
         if invert_y_pos:
             self.pos = (self.pos[0], self.pos[1] - self.size[1])
@@ -46,12 +50,16 @@ class Option(object):
         self.index %= len(self.data)
         self.right_selected = False
         self.render()
+        if self.rfunc is not None:
+            self.rfunc()
 
     def go_left(self):
         self.index -= 1
         self.index %= len(self.data)
         self.left_selected = False
         self.render()
+        if self.lfunc is not None:
+            self.lfunc()
 
     def render_left_arrow(self):
         if self.left_selected:
