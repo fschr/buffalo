@@ -8,7 +8,7 @@ def init( logic_func=None,
           caption='Pygame',
           fullscreen=True,
           frames_per_second=120,
-          cap_frame_rate=False,
+          cap_frame_rate=True,
           clear_color=(0,0,0,0),
           ):
 
@@ -71,3 +71,7 @@ def init( logic_func=None,
     
     return True
 
+def empty_surface( size ):
+    surface = pygame.Surface( size ).convert_alpha()
+    surface.fill( (0, 0, 0, 0) )
+    return surface
