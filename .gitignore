@@ -3,3 +3,4 @@ __pycache__
 build
 dist
 buffalo.egg-info
+*.pyc
