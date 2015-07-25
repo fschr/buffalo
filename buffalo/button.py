@@ -6,7 +6,7 @@ import pygame.draw
 
 from buffalo.label import Label
 
-class Button:
+class Button(object):
     def __init__(self,
                  pos,
                  text,

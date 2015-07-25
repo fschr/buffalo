@@ -3,7 +3,7 @@ import pygame
 import pygame.font
 from buffalo import utils
 
-class Label:
+class Label(object):
     def __init__(self,
                  pos,
                  text,

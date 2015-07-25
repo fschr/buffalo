@@ -5,7 +5,7 @@ import pygame.draw
 from buffalo import utils
 from buffalo.label import Label
 
-class Option:
+class Option(object):
     def __init__(self,
                  pos,
                  data,

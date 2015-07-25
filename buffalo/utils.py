@@ -7,7 +7,7 @@ def init( logic_func=None,
           render_func=None,
           caption='Pygame',
           fullscreen=True,
-          frames_per_second=120,
+          frames_per_second=60,
           cap_frame_rate=True,
           clear_color=(0,0,0,0),
           ):

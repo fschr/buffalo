@@ -4,7 +4,7 @@ import pygame
 from buffalo import utils
 from buffalo.label import Label
 
-class Input:
+class Input(object):
     def __init__(self,
                  pos,
                  text,
