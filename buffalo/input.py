@@ -45,6 +45,8 @@ class Input(object):
             self.selected = False
             self.label.text = self.label.text[:-1]
             self.label.render()
+            if self.func is not None:
+                self.func()
 
     def process_char(self, c):
         if c == pygame.K_ESCAPE:
