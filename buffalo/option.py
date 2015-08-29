@@ -6,22 +6,23 @@ from buffalo import utils
 from buffalo.label import Label
 
 class Option(object):
-    def __init__(self,
-                 pos,
-                 data,
-                 antialiasing=True,
-                 color=(255, 255, 255, 255),
-                 font="default",
-                 invert_y_pos=False,
-                 invert_x_pos=False,
-                 x_centered=False,
-                 y_centered=False,
-                 a_color=(0, 100, 200, 255),
-                 sel_color=(0, 50, 100, 255),
-                 padding=10,
-                 rfunc=None,
-                 lfunc=None,
-                 ):
+    def __init__(
+            self,
+            pos,
+            data,
+            antialiasing=True,
+            color=(255, 255, 255, 255),
+            font="default",
+            invert_y_pos=False,
+            invert_x_pos=False,
+            x_centered=False,
+            y_centered=False,
+            a_color=(0, 100, 200, 255),
+            sel_color=(0, 50, 100, 255),
+            padding=10,
+            rfunc=None,
+            lfunc=None,
+    ):
         self.pos = pos
         self.data = data
         self.antialiasing = antialiasing

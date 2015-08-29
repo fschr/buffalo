@@ -5,18 +5,19 @@ from buffalo import utils
 from buffalo.label import Label
 
 class Input(object):
-    def __init__(self,
-                 pos,
-                 text,
-                 antialiasing=True,
-                 color=(255, 255, 255, 255),
-                 font="default",
-                 invert_y_pos=False,
-                 invert_x_pos=False,
-                 x_centered=False,
-                 y_centered=False,
-                 func=None,
-                 ):
+    def __init__(
+            self,
+            pos,
+            text,
+            antialiasing=True,
+            color=(255, 255, 255, 255),
+            font="default",
+            invert_y_pos=False,
+            invert_x_pos=False,
+            x_centered=False,
+            y_centered=False,
+            func=None,
+    ):
         self.label = Label(
             pos,
             text,

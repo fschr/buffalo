@@ -2,15 +2,16 @@ __author__ = "Thomas Fischer"
 import pygame
 import pygame.font
 
-def init( logic_func=None, 
-          update_func=None, 
-          render_func=None,
-          caption='Pygame',
-          fullscreen=True,
-          frames_per_second=60,
-          cap_frame_rate=True,
-          clear_color=(0,0,0,0),
-          ):
+def init(
+        logic_func=None, 
+        update_func=None, 
+        render_func=None,
+        caption='Pygame',
+        fullscreen=True,
+        frames_per_second=60,
+        cap_frame_rate=True,
+        clear_color=(0,0,0,0),
+):
 
     global SCREEN_W, SCREEN_H
     global SCREEN_S, SCREEN_M
@@ -63,7 +64,7 @@ def init( logic_func=None,
     global fonts
     DEFAULT_FONT = "arial"
     fonts = {
-        'default': pygame.font.SysFont(DEFAULT_FONT, 18),
+        'default': pygame.font.SysFont(DEFAULT_FONT, 12),
         'droidsans18': pygame.font.SysFont("droidsans", 18),
         'droidsans24': pygame.font.SysFont("droidsans", 24),
         'droidsans14': pygame.font.SysFont("droidsans", 14),

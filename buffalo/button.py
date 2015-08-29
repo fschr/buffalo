@@ -7,21 +7,22 @@ import pygame.draw
 from buffalo.label import Label
 
 class Button(object):
-    def __init__(self,
-                 pos,
-                 text,
-                 antialiasing=True, 
-                 color=(255, 255, 255, 255),
-                 bg_color=(0, 100, 200, 255),
-                 sel_color=(0, 50, 100, 255),
-                 font="default",
-                 invert_y_pos=False,
-                 invert_x_pos=False,
-                 x_centered=False,
-                 y_centered=False,
-                 feathering=15,
-                 func=None,
-                 ):
+    def __init__(
+            self,
+            pos,
+            text,
+            antialiasing=True, 
+            color=(255, 255, 255, 255),
+            bg_color=(0, 100, 200, 255),
+            sel_color=(0, 50, 100, 255),
+            font="default",
+            invert_y_pos=False,
+            invert_x_pos=False,
+            x_centered=False,
+            y_centered=False,
+            feathering=15,
+            func=None,
+    ):
         self.label = Label(
             (feathering, feathering),
             text,
