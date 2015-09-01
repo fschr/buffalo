@@ -41,7 +41,7 @@ class Scene:
                 if event.key == pygame.K_ESCAPE:
                     self.on_escape()
                 else:
-                    for inpt in inputs:
+                    for inpt in self.inputs:
                         if inpt.selected:
                             inpt.process_char( event.key )
             elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -49,7 +49,7 @@ class Scene:
                 for button in self.buttons:
                     if button.get_rect().collidepoint( mouse_pos ):
                         button.set_selected(True)
-                for option in options:
+                for option in self.options:
                     if option.get_left_rect().collidepoint( mouse_pos ):
                         option.set_left_selected(True)
                         if option.get_right_rect().collidepoint( mouse_pos ):
@@ -61,12 +61,12 @@ class Scene:
                     if button.get_rect().collidepoint( mouse_pos ):
                         if button.func is not None:
                             button.func()
-                for inpt in inputs:
+                for inpt in self.inputs:
                     if inpt.get_rect().collidepoint( mouse_pos ):
                         inpt.select()
                     else:
                         inpt.deselect()
-                for option in options:
+                for option in self.options:
                     if option.get_left_rect().collidepoint( mouse_pos ):
                         option.go_left()
                     if option.get_right_rect().collidepoint( mouse_pos ):
