@@ -1,29 +1,28 @@
-__author__ = "Thomas Fischer"
 import pygame
 
 from buffalo import utils
-from buffalo.examples import menu
+
+from buffalo.examples.menu import Menu
 
 def main():
-
+    
     while not utils.end:
-        utils.logic()
-        utils.update()
-        utils.render()
+        utils.scene.logic()
+        utils.scene.update()
+        utils.scene.render()
         utils.delta = utils.clock.tick( utils.FRAMES_PER_SECOND )
 
 if __name__ == "__main__":
     
-    if not utils.init( 
-        logic_func=menu.logic, 
-        update_func=menu.update, 
-        render_func=menu.render,
-        ):
+    if not utils.init(
+            caption='Buffalo Project',
+    ):
         print('buffalo.utils failed to initialize')
         pygame.quit()
         exit()
-
-    menu.init()
+    
+    utils.set_scene( Menu() )
+    
     main()
-
+    
     pygame.quit()

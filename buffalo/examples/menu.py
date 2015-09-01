@@ -1,68 +1,46 @@
-__author__ = "Thomas Fischer"
 import pygame
 
 from buffalo import utils
+from buffalo.scene import Scene
 from buffalo.label import Label
 from buffalo.button import Button
+from buffalo.input import Input
+from buffalo.option import Option
 
-def init():
+class Menu(Scene):
 
-    global BACKGROUND_COLOR
-    global buttons
-    global labels
-
-    BACKGROUND_COLOR = (0, 170, 0, 0)
-
-    buttons = set([])
-    labels = set([])
-
-    label_version = Label(
-        (5, utils.SCREEN_H - 5),
-        "Buffalo Program 0.0 alpha + July 15th, 2015",
-        invert_y_pos=True,
+    def __init__(self):
+        super().__init__()
+        self.labels.add(
+            Label(
+                (5, 5),
+                "Hello, World!",
+            )
         )
-    labels.add( label_version )
-
-    button_exit = Button(
-        (utils.SCREEN_W / 2, 3 * utils.SCREEN_H / 4),
-        "Exit",
-        x_centered=True,
-        y_centered=True,
-        feathering=10,
-        func=exit,
+        self.inputs.add(
+            Input(
+                (50, 50),
+                "I'm an Input. Edit me, please.",
+            )
         )
-    buttons.add( button_exit )
+        self.options.add(
+            Option(
+                (100, 100),
+                ("Option 1", "Option 2"),
+            )
+        )
+        self.buttons.add(
+            Button(
+                (200, 200),
+                ("As a Button, I find this offensive."),
+            )
+        )
 
-def logic():
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            utils.end = True
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                utils.end = True
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_pos = pygame.mouse.get_pos()
-            for button in buttons:
-                if button.get_rect().collidepoint( mouse_pos ):
-                    button.set_selected(True)
-        elif event.type == pygame.MOUSEBUTTONUP:
-            mouse_pos = pygame.mouse.get_pos()
-            for button in buttons:
-                button.set_selected(False)
-                if button.get_rect().collidepoint( mouse_pos ):
-                    if button.func is not None:
-                        button.func()
+    def on_escape(self):
+        exit()
 
-def update():
-    pass
+    def update(self):
+        pass
 
-def render():
-    utils.screen.fill( BACKGROUND_COLOR )
-
-    for label in labels:
-        label.blit( utils.screen )
-    for button in buttons:
-        button.blit( utils.screen )
-
-    pygame.display.update()
-    
+    def blit(self):
+        pass
