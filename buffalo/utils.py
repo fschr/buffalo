@@ -3,9 +3,6 @@ import pygame
 import pygame.font
 
 def init(
-        logic_func=None, 
-        update_func=None, 
-        render_func=None,
         caption='Pygame',
         fullscreen=True,
         frames_per_second=60,
@@ -42,14 +39,9 @@ def init(
     CLEAR_COLOR = clear_color
     CAP_FRAME_RATE = cap_frame_rate
     FRAMES_PER_SECOND = frames_per_second
-    
-    global logic
-    global update
-    global render    
 
-    logic = logic_func
-    update = update_func
-    render = render_func
+    global scene
+    scene = None
 
     global delta
     delta = 1000
@@ -71,6 +63,10 @@ def init(
         }
     
     return True
+
+def set_scene( other_scene ):
+    global scene
+    scene = other_scene
 
 def empty_surface( size ):
     surface = pygame.Surface( size ).convert_alpha()

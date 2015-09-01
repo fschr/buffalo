@@ -101,7 +101,7 @@ class Scene:
         you're looking for), and then updates
         the display.
         """
-        utils.screen.fill( Scene.BACKGROUND_COLOR )
+        utils.screen.fill( self.BACKGROUND_COLOR )
 
         for label in self.labels:
             label.blit( utils.screen )
