@@ -56,7 +56,12 @@ def init(
     global fonts
     DEFAULT_FONT = "arial"
     fonts = {
-        'default': pygame.font.SysFont(DEFAULT_FONT, 12),
+        'default12': pygame.font.SysFont(DEFAULT_FONT, 12),
+        'default': pygame.font.SysFont(DEFAULT_FONT, 14),
+        'default18': pygame.font.SysFont(DEFAULT_FONT, 18),
+        'default24': pygame.font.SysFont(DEFAULT_FONT, 24),
+        'default36': pygame.font.SysFont(DEFAULT_FONT, 36),
+        'default48': pygame.font.SysFont(DEFAULT_FONT, 48),
         'droidsans18': pygame.font.SysFont("droidsans", 18),
         'droidsans24': pygame.font.SysFont("droidsans", 24),
         'droidsans14': pygame.font.SysFont("droidsans", 14),
