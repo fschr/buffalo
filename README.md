@@ -157,4 +157,9 @@ Finally, draw all non-Buffalo objects (Labels, Buttons, Options, and Inputs are 
 
 # License and Redistribution
 
-This project licensed under the GNU GENERAL PUBLIC LICENSE version 2. Everyone is free to use, modify, or redistribute this code, as long as it is noted that the original author is me, Thomas Fischer.
+This project licensed under the GNU GENERAL PUBLIC LICENSE version 2. Everyone is free to use, modify, or redistribute this code, as long as the names of the original authors are noted.
+
+# Original Authors
+
+Thomas Fischer
+Benjamin Congdon
