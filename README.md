@@ -13,7 +13,7 @@ git clone https://github.com/gragas/buffalo/
 Navigate to cloned repository and install it
 
 ```
-python3 setup.py install
+python3 setup.py install 
 ```
 
 Of course, Buffalo requires Pygame.
@@ -48,7 +48,7 @@ Create the main loop
 
 ```
 def main():
-    
+
     while not utils.end:
         utils.scene.logic()
         utils.scene.update()
@@ -60,14 +60,14 @@ Initialize everything
 
 ```
 if __name__ == "__main__":
-    
+
     if not utils.init(
             caption='Buffalo Project',
     ):
         print('buffalo.utils failed to initialize')
         pygame.quit()
         exit()
-    
+
     utils.set_scene( Menu() )
 ```
 
