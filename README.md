@@ -2,6 +2,7 @@
 
 Buffalo is an extremely lightweight Python module to assist rapid Pygame development. The source includes labels, buttons, and basic utilities.
 
+
 # Installing Buffalo
 
 To install Buffalo, simply download a copy of the source
