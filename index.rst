@@ -1,14 +1,13 @@
 Buffalo
 =======
 Buffalo assists rapid Pygame development.
------------------------------------------
 
 Installing Buffalo
 ==================
 
 To install Buffalo, simply download a copy of the source
-
 ::
+
     git clone https://github.com/gragas/buffalo/
 
 Navigate to cloned repository and install it
@@ -57,8 +56,8 @@ Create the main loop
             utils.delta = utils.clock.tick( utils.FRAMES_PER_SECOND )
 
 Initialize everything
-
 ::
+
     if __name__ == "__main__":
     
         if not utils.init(
@@ -71,8 +70,8 @@ Initialize everything
         utils.set_scene( Menu() )
 
 Call the main loop and destruct Pygame upon completion
-
 ::
+
         main()
     
         pygame.quit()
@@ -83,8 +82,8 @@ menu.py
 This file represents the main menu.
 
 First, import necessary modules
-
 ::
+
     import pygame
     
     from buffalo import utils
@@ -143,8 +142,8 @@ Define what needs to be updated independent of framrate. If Pong were made with 
             pass
 
 Finally, draw all non-Buffalo objects (Labels, Buttons, Options, and Inputs are drawn automatically).
-
 ::
+
         def blit(self):
             pass
 
