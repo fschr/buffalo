@@ -23,8 +23,8 @@ def init(
     if fullscreen:
 
         dinf = pygame.display.Info()
-        SCREEN_S = SCREEN_W, SCREEN_H = (dinf.current_w, dinf.current_h)
-        SCREEN_M = (SCREEN_W / 2, SCREEN_H / 2)
+        SCREEN_S = SCREEN_W, SCREEN_H = (int(dinf.current_w), int(dinf.current_h))
+        SCREEN_M = (SCREEN_W // 2, SCREEN_H // 2)
         screen = pygame.display.set_mode(SCREEN_S, pygame.FULLSCREEN)
         clock  = pygame.time.Clock()
 
@@ -74,6 +74,19 @@ def set_scene( other_scene ):
     scene = other_scene
 
 def empty_surface( size ):
+    """
+    size is a 2-tuple of integers.
+    Returns an empty surface of size size.
+    """
     surface = pygame.Surface( size ).convert_alpha()
     surface.fill( (0, 0, 0, 0) )
     return surface
+
+def dist( a, b ):
+    """
+    a is a 2-tuple of entirely numerical values.
+    b is a 2-tuple of entirely numerical values.
+    The returned value is the integer distance 
+    (via truncation, if necessary) between a and b.
+    """
+    return int( ( (b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2 ) ** 0.5 )
