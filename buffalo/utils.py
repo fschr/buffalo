@@ -1,13 +1,14 @@
 __author__ = "Thomas Fischer"
+
 import pygame
 import pygame.font
 
 def init(
-        caption='Pygame',
-        fullscreen=True,
-        frames_per_second=60,
-        cap_frame_rate=True,
-        clear_color=(0,0,0,0),
+        caption           = "Pygame",
+        fullscreen        = True,
+        frames_per_second = 60,
+        cap_frame_rate    = True,
+        clear_color       = (0,0,0,0),
 ):
 
     global SCREEN_W, SCREEN_H
@@ -17,16 +18,16 @@ def init(
     global end
     
     if not pygame.init():
-        print('Failed to initialize Pygame')
+        print("Failed to initialize Pygame")
         return False
 
     if fullscreen:
 
-        dinf = pygame.display.Info()
+        dinf     = pygame.display.Info()
         SCREEN_S = SCREEN_W, SCREEN_H = (int(dinf.current_w), int(dinf.current_h))
         SCREEN_M = (SCREEN_W // 2, SCREEN_H // 2)
-        screen = pygame.display.set_mode(SCREEN_S, pygame.FULLSCREEN)
-        clock  = pygame.time.Clock()
+        screen   = pygame.display.set_mode(SCREEN_S, pygame.FULLSCREEN)
+        clock    = pygame.time.Clock()
 
     end = False
 
@@ -36,8 +37,8 @@ def init(
     global CAP_FRAME_RATE
     global FRAMES_PER_SECOND    
 
-    CLEAR_COLOR = clear_color
-    CAP_FRAME_RATE = cap_frame_rate
+    CLEAR_COLOR       = clear_color
+    CAP_FRAME_RATE    = cap_frame_rate
     FRAMES_PER_SECOND = frames_per_second
 
     global scene
