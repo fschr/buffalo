@@ -1,3 +1,5 @@
+__author__ = "Thomas Fischer"
+
 import pygame
 
 from buffalo import utils

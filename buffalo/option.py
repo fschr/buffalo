@@ -1,4 +1,5 @@
 __author__ = "Thomas Fischer"
+
 import pygame
 import pygame.draw
 
@@ -6,36 +7,50 @@ from buffalo import utils
 from buffalo.label import Label
 
 class Option(object):
+
+    DEFAULT_ANTIALIASING = True
+    DEFAULT_COLOR        = (255, 255, 255, 255)
+    DEFAULT_FONT         = "default"
+    DEFAULT_INVERT_X_POS = False
+    DEFAULT_INVERT_Y_POS = False
+    DEFAULT_X_CENTERED   = False
+    DEFAULT_Y_CENTERED   = False
+    DEFAULT_A_COLOR      = (0, 100, 200, 255)
+    DEFAULT_SEL_COLOR    = (0, 50, 100, 255)
+    DEFAULT_PADDING      = 10
+    DEFAULT_RFUNC        = None
+    DEFAULT_LFUNC        = None
+
     def __init__(
             self,
             pos,
             data,
-            antialiasing=True,
-            color=(255, 255, 255, 255),
-            font="default",
-            invert_y_pos=False,
-            invert_x_pos=False,
-            x_centered=False,
-            y_centered=False,
-            a_color=(0, 100, 200, 255),
-            sel_color=(0, 50, 100, 255),
-            padding=10,
-            rfunc=None,
-            lfunc=None,
+            antialiasing = None,
+            color        = None,
+            font         = None,
+            invert_y_pos = None,
+            invert_x_pos = None,
+            x_centered   = None,
+            y_centered   = None,
+            a_color      = None,
+            sel_color    = None,
+            padding      = None,
+            rfunc        = None,
+            lfunc        = None,
     ):
-        self.pos = pos
-        self.data = data
-        self.antialiasing = antialiasing
-        self.color = color
-        self.font = font
-        self.index = 0
-        self.left_selected = False
+        self.pos            = pos
+        self.data           = data
+        self.antialiasing   = antialiasing if antialiasing is not None else Option.DEFAULT_ANTIALIASING
+        self.color          = color if color is not None else Option.DEFAULT_COLOR
+        self.font           = font if font is not None else Option.DEFAULT_FONT
+        self.a_color        = a_color if a_color is not None else Option.DEFAULT_A_COLOR
+        self.sel_color      = sel_color if sel_color is not None else Option.DEFAULT_SEL_COLOR
+        self.padding        = padding if padding is not None else Option.DEFAULT_PADDING
+        self.rfunc          = rfunc if rfunc is not None else Option.DEFAULT_RFUNC
+        self.lfunc          = lfunc if lfunc is not None else Option.DEFAULT_LFUNC
+        self.index          = 0
+        self.left_selected  = False
         self.right_selected = False
-        self.a_color = a_color
-        self.sel_color = sel_color
-        self.padding = padding
-        self.rfunc = rfunc
-        self.lfunc = lfunc
         self.render()
         if invert_y_pos:
             self.pos = (self.pos[0], self.pos[1] - self.size[1])
