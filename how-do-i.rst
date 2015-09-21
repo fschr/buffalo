@@ -49,7 +49,7 @@ will create a label who's center position (x, y) will be equal to the 2-tuple pa
 How do I position objects relative to their size? (or how do I know how big an object is before I make it?)
 -----------------------------------------------------------------------------------------------------------
 
-Commonly, programmers want to make buttons and labels in the bottom left and bottom right of the screen. Take a moment to try this in Buffalo. You'll soon realize that to make a label or button flesh with the bottom of the screen, you must first know the height of the button. To rememdy this, to keyword arguments are part of most Buffalo objects.
+Commonly, programmers want to make buttons and labels in the bottom left and bottom right of the screen. Take a moment to try this in Buffalo. You'll soon realize that to make a label or button flesh with the bottom of the screen, you must first know the height of the button. To rememdy this, two keyword arguments are part of most Buffalo objects.
 
 Suppose you want to create an exit button in the bottom-left corner of the screen. Here's how to do that:
 ::
@@ -76,4 +76,4 @@ For more clarity, check out this code:
     >> button.pos
     (-37, 5)
 
-When ``invert_x_pos`` is ``True``, the position of the button is automatically calculated such that the position of the top-*right* (instead of top-left) corner of the botton is ``(5, 5)``.
+When ``invert_x_pos`` is ``True``, the position of the button is automatically calculated such that the position of the top-*right* (instead of top-left) corner of the button is ``(5, 5)``.
