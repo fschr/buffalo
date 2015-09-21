@@ -6,10 +6,10 @@ To install Buffalo, simply download a copy of the source
 
     git clone https://github.com/gragas/buffalo/
 
-Navigate to cloned repository and install it
+Navigate to cloned repository and install it (Buffalo is compatible with any version of Python greater than or equal to 2.5)
 ::
 
-    python3 setup.py install 
+    python setup.py install 
 
 Of course, Buffalo requires Pygame.
 
@@ -19,7 +19,7 @@ Testing Buffalo
 To test Buffalo, run the following command
 ::
 
-    python3 -m buffalo.examples.main
+    python -m buffalo.examples.main
 
 A fullscreen Pygame program should appear with an horizontally-centered exit button and a label aligned with the lower left corner.
 
@@ -95,7 +95,7 @@ Write some initialization code
     class Menu(Scene):
     
         def __init__(self):
-            super().__init__()
+            Scene.__init__(self)
 
 Add some Labels, Inputs, Options, and Buttons.
 ::

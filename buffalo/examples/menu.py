@@ -10,7 +10,7 @@ from buffalo.option import Option
 class Menu(Scene):
 
     def __init__(self):
-        super().__init__()
+        Scene.__init__(self)
         self.labels.add(
             Label(
                 (5, 5),
