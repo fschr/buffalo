@@ -6,7 +6,7 @@ from buffalo import utils
 from buffalo.label import Label
 from buffalo.button import Button
 
-class Scene:
+class Scene(object):
     """
     Scene is a class which describes the procedure
     to update

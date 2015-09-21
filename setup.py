@@ -5,6 +5,6 @@ except ImportError:
 
 setup(name='buffalo',
       author='Thomas D. Fischer',
-      version='1.0.2',
+      version='1.0.3',
       py_modules=['buffalo', 'buffalo.examples'],
       )

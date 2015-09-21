@@ -15,9 +15,9 @@ def main():
 if __name__ == "__main__":
     
     if not utils.init(
-            caption='Buffalo Project',
+            caption="Buffalo Project",
     ):
-        print('buffalo.utils failed to initialize')
+        print("buffalo.utils failed to initialize")
         pygame.quit()
         exit()
     
