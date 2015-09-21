@@ -1,13 +1,14 @@
 __author__ = "Thomas Fischer"
+
 import pygame
 import pygame.font
 
 def init(
-        caption='Pygame',
-        fullscreen=True,
-        frames_per_second=60,
-        cap_frame_rate=True,
-        clear_color=(0,0,0,0),
+        caption           = "Pygame",
+        fullscreen        = True,
+        frames_per_second = 60,
+        cap_frame_rate    = True,
+        clear_color       = (0,0,0,0),
 ):
 
     global SCREEN_W, SCREEN_H
@@ -17,16 +18,16 @@ def init(
     global end
     
     if not pygame.init():
-        print('Failed to initialize Pygame')
+        print("Failed to initialize Pygame")
         return False
 
     if fullscreen:
 
-        dinf = pygame.display.Info()
-        SCREEN_S = SCREEN_W, SCREEN_H = (dinf.current_w, dinf.current_h)
-        SCREEN_M = (SCREEN_W / 2, SCREEN_H / 2)
-        screen = pygame.display.set_mode(SCREEN_S, pygame.FULLSCREEN)
-        clock  = pygame.time.Clock()
+        dinf     = pygame.display.Info()
+        SCREEN_S = SCREEN_W, SCREEN_H = (int(dinf.current_w), int(dinf.current_h))
+        SCREEN_M = (SCREEN_W // 2, SCREEN_H // 2)
+        screen   = pygame.display.set_mode(SCREEN_S, pygame.FULLSCREEN)
+        clock    = pygame.time.Clock()
 
     end = False
 
@@ -36,8 +37,8 @@ def init(
     global CAP_FRAME_RATE
     global FRAMES_PER_SECOND    
 
-    CLEAR_COLOR = clear_color
-    CAP_FRAME_RATE = cap_frame_rate
+    CLEAR_COLOR       = clear_color
+    CAP_FRAME_RATE    = cap_frame_rate
     FRAMES_PER_SECOND = frames_per_second
 
     global scene
@@ -74,6 +75,19 @@ def set_scene( other_scene ):
     scene = other_scene
 
 def empty_surface( size ):
+    """
+    size is a 2-tuple of integers.
+    Returns an empty surface of size size.
+    """
     surface = pygame.Surface( size ).convert_alpha()
     surface.fill( (0, 0, 0, 0) )
     return surface
+
+def dist( a, b ):
+    """
+    a is a 2-tuple of entirely numerical values.
+    b is a 2-tuple of entirely numerical values.
+    The returned value is the integer distance 
+    (via truncation, if necessary) between a and b.
+    """
+    return int( ( (b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2 ) ** 0.5 )

@@ -1,35 +1,53 @@
 __author__ = "Thomas Fischer"
+
 import pygame
 
 from buffalo import utils
 from buffalo.label import Label
 
 class Input(object):
+
+    DEFAULT_ANTIALIASING = True
+    DEFAULT_COLOR        = (255, 255, 255, 255)
+    DEFAULT_FONT         = "default"
+    DEFAULT_INVERT_X_POS = False
+    DEFAULT_INVERT_Y_POS = False
+    DEFAULT_X_CENTERED   = False
+    DEFAULT_Y_CENTERED   = False
+    DEFAULT_FUNC         = None
+
     def __init__(
             self,
             pos,
             text,
-            antialiasing=True,
-            color=(255, 255, 255, 255),
-            font="default",
-            invert_y_pos=False,
-            invert_x_pos=False,
-            x_centered=False,
-            y_centered=False,
-            func=None,
+            antialiasing = None,
+            color        = None,
+            font         = None,
+            invert_y_pos = None,
+            invert_x_pos = None,
+            x_centered   = None,
+            y_centered   = None,
+            func         = None,
     ):
+        antialiasing = antialiasing if antialiasing is not None else Input.DEFAULT_ANTIALIASING
+        color        = color if color is not None else Input.DEFAULT_COLOR
+        font         = font if font is not None else Input.DEFAULT_FONT
+        invert_x_pos = invert_x_pos if invert_x_pos is not None else Input.DEFAULT_INVERT_X_POS
+        invert_y_pos = invert_y_pos if invert_y_pos is not None else Input.DEFAULT_INVERT_Y_POS
+        x_centered   = x_centered if x_centered is not None else Input.DEFAULT_X_CENTERED
+        y_centered   = y_centered if y_centered is not None else Input.DEFAULT_Y_CENTERED
         self.label = Label(
             pos,
             text,
-            antialiasing=antialiasing,
-            color=color,
-            font=font,
-            invert_y_pos=invert_y_pos,
-            invert_x_pos=invert_x_pos,
-            x_centered=x_centered,
-            y_centered=y_centered,
+            antialiasing = antialiasing,
+            color        = color,
+            font         = font,
+            invert_y_pos = invert_y_pos,
+            invert_x_pos = invert_x_pos,
+            x_centered   = x_centered,
+            y_centered   = y_centered,
             )
-        self.func = func
+        self.func     = func if func is not None else Input.DEFAULT_FUNC
         self.selected = False
 
     def get_rect(self):
