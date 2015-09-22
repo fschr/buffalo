@@ -9,7 +9,7 @@ To install Buffalo, simply download a copy of the source
 Navigate to cloned repository and install it (Buffalo is compatible with any version of Python greater than or equal to 2.5)
 ::
 
-    python setup.py install 
+    python setup.py install
 
 Of course, Buffalo requires Pygame.
 
