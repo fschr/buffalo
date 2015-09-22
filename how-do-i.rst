@@ -10,6 +10,7 @@ Making a button is pretty easy. Inside the constructor of an object that extends
 ::
     class SomeScene(Scene):
         def __init__(self):
+            Scene.__init__(self)
             hello_button = Button( utils.SCREEN_M, "Hello" )
             self.buttons.add( exit_button )
 
@@ -77,3 +78,14 @@ For more clarity, check out this code:
     (-37, 5)
 
 When ``invert_x_pos`` is ``True``, the position of the button is automatically calculated such that the position of the top-*right* (instead of top-left) corner of the button is ``(5, 5)``.
+
+How do I change the default value of keyword arguments?
+-------------------------------------------------------
+
+Suppose you want to initalize twenty labels, but you want all of them to be red instead of white. Instead of having to pass ``(255, 0, 0, 255)`` as the keyword argutment ``color`` for every ``Label``, you can simply change the default color. Doing this is easy:
+::
+
+    # Just before the labels are initialized
+    Label.DEFAULT_COLOR = (255, 0, 0, 255)
+
+Almost every attribute of every Buffalo object has a default value that can be modified.

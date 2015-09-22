@@ -25,23 +25,24 @@ class Button(object):
             self,
             pos,
             text,
-            antialiasing = True, 
-            color        = (255, 255, 255, 255),
-            bg_color     = (0, 100, 200, 255),
-            sel_color    = (0, 50, 100, 255),
-            font         = "default",
-            invert_y_pos = False,
-            invert_x_pos = False,
-            x_centered   = False,
-            y_centered   = False,
-            feathering   = 15,
+            antialiasing = None,
+            color        = None,
+            bg_color     = None,
+            sel_color    = None,
+            font         = None,
+            invert_y_pos = None,
+            invert_x_pos = None,
+            x_centered   = None,
+            y_centered   = None,
+            feathering   = None,
             func         = None,
     ):
         antialiasing = antialiasing if antialiasing is not None else Button.DEFAULT_ANTIALIASING
         color = color if color is not None else Button.DEFAULT_COLOR
         font = font if font is not None else Button.DEFAULT_FONT
+        self.feathering = feathering if feathering is not None else Button.DEFAULT_FEATHERING
         self.label = Label(
-            (feathering, feathering),
+            (self.feathering, self.feathering),
             text,
             antialiasing=antialiasing,
             color=color,
@@ -58,7 +59,6 @@ class Button(object):
         self.pos = pos
         self.bg_color = bg_color if bg_color is not None else Button.DEFAULT_BG_COLOR
         self.sel_color = sel_color if sel_color is not None else Button.DEFAULT_SEL_COLOR
-        self.feathering = feathering if feathering is not None else Button.FEATHERING
         self.func = func if func is not None else Button.DEFAULT_FUNC
         self.selected = False
         self.size = (
