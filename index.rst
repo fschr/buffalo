@@ -7,3 +7,4 @@ Buffalo makes Pygame development blazing fast.
 
    gettingstarted
    how-do-i
+   what-is-a-scene
