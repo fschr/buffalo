@@ -1,6 +1,6 @@
 Buffalo
 =======
-Buffalo makes Pygame development blazing fast.
+Buffalo makes Pygame development blazing fast. Test.
 
 .. toctree::
    :maxdepth: 3
