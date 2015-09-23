@@ -26,7 +26,7 @@ class Scene(object):
 
     def on_escape(self):
         """
-        This method is called when the escape key 
+        This method is called when the escape key
         is pressed.
         """
         raise NotImplementedError
@@ -73,7 +73,7 @@ class Scene(object):
                         option.go_left()
                     if option.get_right_rect().collidepoint( mouse_pos ):
                         option.go_right()
-    
+
     def update(self):
         """
         update is called a certain number of times every
@@ -104,6 +104,7 @@ class Scene(object):
         the display.
         """
         utils.screen.fill( self.BACKGROUND_COLOR )
+        self.blit()
 
         for label in self.labels:
             label.blit( utils.screen )
@@ -114,6 +115,5 @@ class Scene(object):
         for inpt in self.inputs:
             inpt.blit( utils.screen )
 
-        self.blit()
 
         pygame.display.update()
