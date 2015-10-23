@@ -29,6 +29,13 @@ def init(
         screen   = pygame.display.set_mode(SCREEN_S, pygame.FULLSCREEN)
         clock    = pygame.time.Clock()
 
+    else:
+        dinf     = pygame.display.Info()
+        SCREEN_S = SCREEN_W, SCREEN_H = (1080,720)
+        SCREEN_M = (SCREEN_W // 2, SCREEN_H // 2)
+        screen   = pygame.display.set_mode((1080, 720))
+        clock    = pygame.time.Clock()
+
     end = False
 
     pygame.display.set_caption(caption)
