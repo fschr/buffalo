@@ -77,8 +77,8 @@ class Input(object):
         elif c == pygame.K_BACKSPACE:
             self.label.text = self.label.text[:-2] + '|'
             self.label.render()
-        elif (c >= pygame.K_a and c <= pygame.K_z) or c == pygame.K_SPACE:
-            if pygame.key.get_mods() & pygame.KMOD_SHIFT:
+        elif (c >= pygame.K_a and c <= pygame.K_z) or (c >= pygame.K_0 and c <= pygame.K_9) or c == pygame.K_SPACE:
+            if (c >= pygame.K_a and c <= pygame.K_z) and (pygame.key.get_mods() & pygame.KMOD_SHIFT):
                 c -= 32
             self.label.text = self.label.text[:-1] + chr(c) + '|'
             self.label.render()
