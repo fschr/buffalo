@@ -140,7 +140,7 @@ We don't need to update or blit anything other than Buffalo objects, so ``update
 play.py (our second scene)
 --------------------------
 
-Here's the source code for our second scene. I don't have time to document it just yet. You can expect more complete documentation within the next few weeks.
+Here's the source code for our second scene. Hopefully, this ``Scene`` will help soldifiy the concept of a ``Scene``.
 ::
     
     import pygame
@@ -187,6 +187,28 @@ Here's the source code for our second scene. I don't have time to document it ju
             self.slider1.blit(utils.screen)
             self.slider2.blit(utils.screen)
             self.square.blit(utils.screen)
+
+Again, we have four important methods in this class (``Play``) that extends ``Scene``:
+
+The constructor
+---------------
+
+I don't think the constructor needs much explaining; things are initialized.
+
+The ``on_escape`` method
+------------------------
+
+This doesn't need much explaining either. When the ESCAPE key is pressed, ``on_escape`` is called. When ``on_escape`` is called, ``go_to_menu`` is called, which does exactly that.
+
+The ``update`` method
+---------------------
+
+The ``update`` method is called a certain number of times each second, independent of any computer's FPS. As such, this is the method in which the logic of every non-Buffalo object needs to be. For example, the positions of both sliders and the square are updated here. Each slider's position is a function of the keys pressed at the time ``update`` is called. The position of the square is a function of the sliders' positions.
+
+The ``blit`` method
+-------------------
+
+This is the method where everything that is not a Buffalo object is drawn. I.e., the sliders and squares are drawn in this method.
 
 You can find the rest of the (undocumented) source code below.
 
