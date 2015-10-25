@@ -27,6 +27,7 @@ class Input(object):
             invert_x_pos = None,
             x_centered   = None,
             y_centered   = None,
+            max_chars    = None,
             func         = None,
     ):
         antialiasing = antialiasing if antialiasing is not None else Input.DEFAULT_ANTIALIASING
@@ -47,6 +48,7 @@ class Input(object):
             x_centered   = x_centered,
             y_centered   = y_centered,
             )
+        self.max_chars = max_chars if max_chars is not None else Input.DEFAULT_MAX_CHARS
         self.func     = func if func is not None else Input.DEFAULT_FUNC
         self.selected = False
 
@@ -77,8 +79,14 @@ class Input(object):
         elif c == pygame.K_BACKSPACE:
             self.label.text = self.label.text[:-2] + '|'
             self.label.render()
-        elif (c >= pygame.K_a and c <= pygame.K_z) or (c >= pygame.K_0 and c <= pygame.K_9) or c == pygame.K_SPACE:
-            if (c >= pygame.K_a and c <= pygame.K_z) and (pygame.key.get_mods() & pygame.KMOD_SHIFT):
+        elif len(self.label.text) - 1 < self.max_chars and \
+        (
+        (c >= pygame.K_a and c <= pygame.K_z) or \
+        (c >= pygame.K_0 and c <= pygame.K_9) or \
+        (c == pygame.K_SPACE)
+        ):
+            if (c >= pygame.K_a and c <= pygame.K_z) and \
+               (pygame.key.get_mods() & pygame.KMOD_SHIFT):
                 c -= 32
             self.label.text = self.label.text[:-1] + chr(c) + '|'
             self.label.render()
