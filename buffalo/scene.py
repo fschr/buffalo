@@ -115,5 +115,4 @@ class Scene(object):
         for inpt in self.inputs:
             inpt.blit( utils.screen )
 
-
         pygame.display.update()
