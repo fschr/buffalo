@@ -23,6 +23,10 @@ class Scene(object):
         self.buttons = set()
         self.options = set()
         self.inputs = set()
+        self.mouse_pos = (0, 0)
+        self.mouse_rel = (0, 0)
+        self.click_pos = (0, 0)
+        self.mouse_buttons = [0, 0, 0]
 
     def on_escape(self):
         """
@@ -36,6 +40,8 @@ class Scene(object):
         This method handles all keyboard and mouse input.
         It detects if buttons are clicked, etc.
         """
+        self.mouse_rel = pygame.mouse.get_rel()
+        self.mouse_pos = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 utils.end = True
@@ -47,31 +53,32 @@ class Scene(object):
                         if inpt.selected:
                             inpt.process_char( event.key )
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = pygame.mouse.get_pos()
+                self.mouse_buttons[0] = True
+                self.click_pos = self.mouse_pos
                 for button in self.buttons:
-                    if button.get_rect().collidepoint( mouse_pos ):
+                    if button.get_rect().collidepoint( self.mouse_pos ):
                         button.set_selected(True)
                 for option in self.options:
-                    if option.get_left_rect().collidepoint( mouse_pos ):
+                    if option.get_left_rect().collidepoint( self.mouse_pos ):
                         option.set_left_selected(True)
-                        if option.get_right_rect().collidepoint( mouse_pos ):
+                        if option.get_right_rect().collidepoint( self.mouse_pos ):
                             option.set_right_selected(True)
             elif event.type == pygame.MOUSEBUTTONUP:
-                mouse_pos = pygame.mouse.get_pos()
+                self.mouse_buttons[0] = False
                 for button in self.buttons:
                     button.set_selected(False)
-                    if button.get_rect().collidepoint( mouse_pos ):
+                    if button.get_rect().collidepoint( self.mouse_pos ):
                         if button.func is not None:
                             button.func()
                 for inpt in self.inputs:
-                    if inpt.get_rect().collidepoint( mouse_pos ):
+                    if inpt.get_rect().collidepoint( self.mouse_pos ):
                         inpt.select()
                     else:
                         inpt.deselect()
                 for option in self.options:
-                    if option.get_left_rect().collidepoint( mouse_pos ):
+                    if option.get_left_rect().collidepoint( self.mouse_pos ):
                         option.go_left()
-                    if option.get_right_rect().collidepoint( mouse_pos ):
+                    if option.get_right_rect().collidepoint( self.mouse_pos ):
                         option.go_right()
 
     def update(self):
