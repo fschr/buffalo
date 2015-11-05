@@ -114,13 +114,15 @@ class Scene(object):
         self.blit()
 
         for label in self.labels:
-            label.blit( utils.screen )
+            label.blit(utils.screen)
         for button in self.buttons:
-            button.blit( utils.screen )
+            button.blit(utils.screen)
         for option in self.options:
-            option.blit( utils.screen )
+            option.blit(utils.screen)
         for inpt in self.inputs:
-            inpt.blit( utils.screen )
+            inpt.blit(utils.screen)
+        for tray in self.trays:
+            tray.blit(utils.screen)    
 
 
         pygame.display.update()
