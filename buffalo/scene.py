@@ -124,5 +124,4 @@ class Scene(object):
         for tray in self.trays:
             tray.blit(utils.screen)    
 
-
         pygame.display.update()

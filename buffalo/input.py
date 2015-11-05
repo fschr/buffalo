@@ -15,6 +15,7 @@ class Input(object):
     DEFAULT_X_CENTERED   = False
     DEFAULT_Y_CENTERED   = False
     DEFAULT_FUNC         = None
+    DEFAULT_MAX_CHARS    = 25
 
     def __init__(
             self,
