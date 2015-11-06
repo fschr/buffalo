@@ -23,7 +23,10 @@ class Tray(object):
         self.min_height = min_height if min_height is not None else Tray.DEFAULT_MIN_HEIGHT
         self.max_height = max_height if max_height is not None else Tray.DEFAULT_MAX_HEIGHT
         self.color = color if color is not None else Tray.DEFAULT_COLOR
-        self.elems = set()
+        self.labels = set()
+        self.buttons = set()
+        self.options = set()
+        self.inputs = set()
         self.should_resize = False
         self.edge = 0b0000
         self.render()
@@ -31,14 +34,15 @@ class Tray(object):
     def render(self):
         self.surface = utils.empty_surface(self.size)
         self.surface.fill(self.color)
-        for elem in self.elems:
-            elem.blit(self.surface)
-        
-    def update(self):
-        rerender = False
-        for elem in self.elems:
-            if elem.update():
-                rerender = True
+        for label in self.labels:
+            label.blit(self.surface)
+        for button in self.buttons:
+            button.blit(self.surface)
+        for option in self.options:
+            option.blit(self.surface)
+        for inpt in self.inputs:
+            inpt.blit(self.surface)
+
 
     def move(self, diff):
         self.pos = self.pos[0] + diff[0], self.pos[1] + diff[1]
@@ -67,8 +71,7 @@ class Tray(object):
             self.pos = self.pos[0], original_pos[1]
         self.render()
 
-    def handle(self, mouse_pos, mouse_rel):
-        self.update() # see if anything must be rerendered
+    def handle(self, mouse_pos, mouse_rel, click_pos):
         assert(type(mouse_pos) == tuple and len(mouse_pos) == 2)
         assert(type(mouse_pos[0]) == int and type(mouse_pos[1]) == int)
         x, y = mouse_pos
@@ -80,26 +83,46 @@ class Tray(object):
         within_x = x >= self.x and x <= self.x + self.width
         within_y = y >= self.y and y <= self.y + self.height
         if within_x:
-            if abs(y - (self.y + self.height)) <= Tray.FEATHER:
+            if y <= self.y + self.height and (self.y + self.height) - y <= Tray.FEATHER:
                 self.should_resize = True
-                self.edge |= 0b1000
-            if abs(y - self.y) <= Tray.FEATHER:
+                self.edge |= 0b1000 # Bottom
+            if y >= self.y and y - self.y <= Tray.FEATHER:
                 self.should_resize = True
-                self.edge |= 0b0010
+                self.edge |= 0b0010 # Top
         if within_y:
-            if abs(x - self.x) <= Tray.FEATHER:
+            if x >= self.x and x - self.x <= Tray.FEATHER:
                 self.should_resize = True
-                self.edge |= 0b0001
-            if abs(x - (self.x + self.width)) <= Tray.FEATHER:
+                self.edge |= 0b0001 # Left
+            if x <= self.x + self.width and self.x + self.width - x <= Tray.FEATHER:
                 self.should_resize = True
-                self.edge |= 0b0100
-        if x > self.x + Tray.FEATHER * 5 and x < self.x + self.width - Tray.FEATHER * 5:
-            if y > self.y + Tray.FEATHER * 5 and y < self.y + self.height - Tray.FEATHER * 5:
-                self.should_move = True
-                for elem in self.elems:
-                    if elem.get_rect().collidepoint(mouse_pos):
+                self.edge |= 0b0100 # Right
+
+        if x >= self.x - Tray.FEATHER and x <= self.x + self.width + Tray.FEATHER:
+            if y >= self.y - Tray.FEATHER and y <= self.y + self.height + Tray.FEATHER:        
+                if x > self.x + Tray.FEATHER * 5 and x < self.x + self.width - Tray.FEATHER * 5:
+                    if y > self.y + Tray.FEATHER * 5 and y < self.y + self.height - Tray.FEATHER * 5:
+                        self.should_move = True
+                relative_to_self_pos = (click_pos[0] - self.x, click_pos[1] - self.y)
+                for button in self.buttons:
+                    if button.get_rect().collidepoint(relative_to_self_pos):
                         self.should_move = False
+                        self.should_resize = False
                         break
+                for inpt in self.inputs:
+                    if inpt.get_rect().collidepoint(relative_to_self_pos):
+                        self.should_move = False
+                        self.should_resize = False
+                        break
+                for option in self.options:
+                    if option.get_left_rect().collidepoint(relative_to_self_pos):
+                        self.should_move = False
+                        self.should_resize = False
+                        break
+                    if option.get_right_rect().collidepoint(relative_to_self_pos):
+                        self.should_move = False
+                        self.should_resize = False
+                        break
+
         if self.should_move:
             self.move(mouse_rel)
         if self.should_resize:
