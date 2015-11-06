@@ -22,6 +22,8 @@ class Tray(object):
         self.max_width = max_width if max_width is not None else Tray.DEFAULT_MAX_WIDTH
         self.min_height = min_height if min_height is not None else Tray.DEFAULT_MIN_HEIGHT
         self.max_height = max_height if max_height is not None else Tray.DEFAULT_MAX_HEIGHT
+        assert(self.width >= self.min_width and self.width <= self.max_width)
+        assert(self.height >= self.min_height and self.height <= self.max_height)
         self.color = color if color is not None else Tray.DEFAULT_COLOR
         self.labels = set()
         self.buttons = set()
