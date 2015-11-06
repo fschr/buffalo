@@ -62,11 +62,14 @@ class Scene(object):
                     for button in tray.buttons:
                         if button.get_rect().collidepoint( (x - tray.x, y - tray.y) ):
                             button.set_selected(True)
+                            button.blit(tray.surface)
                     for option in tray.options:
                         if option.get_left_rect().collidepoint( (x - tray.x, y - tray.y) ):
                             option.set_left_selected(True)
+                            option.blit(tray.surface)
                         if option.get_right_rect().collidepoint( (x - tray.x, y - tray.y) ):
                             option.set_right_selected(True)
+                            option.blit(tray.surface)
 
                 for button in self.buttons:
                     if button.get_rect().collidepoint( self.mouse_pos ):
@@ -84,6 +87,7 @@ class Scene(object):
                 for tray in self.trays:
                     for button in tray.buttons:
                         button.set_selected(False)
+                        button.blit(tray.surface)
                         if button.get_rect().collidepoint( (x - tray.x, y - tray.y) ):
                             if button.func is not None:
                                 button.func()
@@ -95,8 +99,10 @@ class Scene(object):
                     for option in tray.options:
                         if option.get_left_rect().collidepoint( (x - tray.x, y - tray.y) ):
                             option.go_left()
+                            option.blit(tray.surface)
                         if option.get_right_rect().collidepoint( (x - tray.x, y - tray.y) ):
                             option.go_right()
+                            option.blit(tray.surface)
                 
                 for button in self.buttons:
                     button.set_selected(False)
