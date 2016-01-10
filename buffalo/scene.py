@@ -23,6 +23,11 @@ class Scene(object):
         self.buttons = set()
         self.options = set()
         self.inputs = set()
+        self.trays = set()
+        self.mouse_pos = (0, 0)
+        self.mouse_rel = (0, 0)
+        self.click_pos = (0, 0)
+        self.mouse_buttons = [0, 0, 0]
 
     def on_escape(self):
         """
@@ -36,6 +41,8 @@ class Scene(object):
         This method handles all keyboard and mouse input.
         It detects if buttons are clicked, etc.
         """
+        self.mouse_rel = pygame.mouse.get_rel()
+        self.mouse_pos = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 utils.end = True
@@ -47,31 +54,70 @@ class Scene(object):
                         if inpt.selected:
                             inpt.process_char( event.key )
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = pygame.mouse.get_pos()
+                self.mouse_buttons[0] = True
+                self.click_pos = self.mouse_pos
+
+                x, y = self.mouse_pos
+                for tray in self.trays:
+                    for button in tray.buttons:
+                        if button.get_rect().collidepoint( (x - tray.x, y - tray.y) ):
+                            button.set_selected(True)
+                            button.blit(tray.surface)
+                    for option in tray.options:
+                        if option.get_left_rect().collidepoint( (x - tray.x, y - tray.y) ):
+                            option.set_left_selected(True)
+                            option.blit(tray.surface)
+                        if option.get_right_rect().collidepoint( (x - tray.x, y - tray.y) ):
+                            option.set_right_selected(True)
+                            option.blit(tray.surface)
+
                 for button in self.buttons:
-                    if button.get_rect().collidepoint( mouse_pos ):
+                    if button.get_rect().collidepoint( self.mouse_pos ):
                         button.set_selected(True)
                 for option in self.options:
-                    if option.get_left_rect().collidepoint( mouse_pos ):
+                    if option.get_left_rect().collidepoint( self.mouse_pos ):
                         option.set_left_selected(True)
-                        if option.get_right_rect().collidepoint( mouse_pos ):
+                        if option.get_right_rect().collidepoint( self.mouse_pos ):
                             option.set_right_selected(True)
+
             elif event.type == pygame.MOUSEBUTTONUP:
-                mouse_pos = pygame.mouse.get_pos()
+                self.mouse_buttons[0] = False
+
+                x, y = self.mouse_pos
+                for tray in self.trays:
+                    for button in tray.buttons:
+                        button.set_selected(False)
+                        button.blit(tray.surface)
+                        if button.get_rect().collidepoint( (x - tray.x, y - tray.y) ):
+                            if button.func is not None:
+                                button.func()
+                    for inpt in tray.inputs:
+                        if inpt.get_rect().collidepoint( (x - tray.x, y - tray.y) ):
+                            inpt.select()
+                        else:
+                            inpt.deselect()
+                    for option in tray.options:
+                        if option.get_left_rect().collidepoint( (x - tray.x, y - tray.y) ):
+                            option.go_left()
+                            option.blit(tray.surface)
+                        if option.get_right_rect().collidepoint( (x - tray.x, y - tray.y) ):
+                            option.go_right()
+                            option.blit(tray.surface)
+                
                 for button in self.buttons:
                     button.set_selected(False)
-                    if button.get_rect().collidepoint( mouse_pos ):
+                    if button.get_rect().collidepoint( self.mouse_pos ):
                         if button.func is not None:
                             button.func()
                 for inpt in self.inputs:
-                    if inpt.get_rect().collidepoint( mouse_pos ):
+                    if inpt.get_rect().collidepoint( self.mouse_pos ):
                         inpt.select()
                     else:
                         inpt.deselect()
                 for option in self.options:
-                    if option.get_left_rect().collidepoint( mouse_pos ):
+                    if option.get_left_rect().collidepoint( self.mouse_pos ):
                         option.go_left()
-                    if option.get_right_rect().collidepoint( mouse_pos ):
+                    if option.get_right_rect().collidepoint( self.mouse_pos ):
                         option.go_right()
 
     def update(self):
@@ -85,7 +131,15 @@ class Scene(object):
         of the program's framerate, so the program's
         update speed does not vary between computers.
         """
-        raise NotImplementedError
+        if self.mouse_buttons[0]:
+            for tray in self.trays:
+                tray.handle(self.mouse_pos, self.mouse_rel, self.click_pos)
+        else:
+            for tray in self.trays:
+                tray.should_move = False
+                tray.should_resize = False
+                tray.edge = 0b0000
+
 
     def blit(self):
         """
@@ -107,13 +161,14 @@ class Scene(object):
         self.blit()
 
         for label in self.labels:
-            label.blit( utils.screen )
+            label.blit(utils.screen)
         for button in self.buttons:
-            button.blit( utils.screen )
+            button.blit(utils.screen)
         for option in self.options:
-            option.blit( utils.screen )
+            option.blit(utils.screen)
         for inpt in self.inputs:
-            inpt.blit( utils.screen )
-
+            inpt.blit(utils.screen)
+        for tray in self.trays:
+            tray.blit(utils.screen)
 
         pygame.display.update()

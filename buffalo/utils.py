@@ -25,6 +25,8 @@ def init(
 
         dinf     = pygame.display.Info()
         SCREEN_S = SCREEN_W, SCREEN_H = (int(dinf.current_w), int(dinf.current_h))
+        if(dinf.current_w == 0):
+            SCREEN_S = (640, 480)
         SCREEN_M = (SCREEN_W // 2, SCREEN_H // 2)
         screen   = pygame.display.set_mode(SCREEN_S, pygame.FULLSCREEN)
         clock    = pygame.time.Clock()

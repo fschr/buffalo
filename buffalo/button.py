@@ -21,6 +21,16 @@ class Button(object):
     DEFAULT_FEATHERING   = 15
     DEFAULT_FUNC         = None
 
+    def get_text(self):
+        return self.label.text
+    def set_text(self, text):
+        self.label.text = text
+        self.label.render()
+        self.render()
+
+    #This propterty allow the button text to be edited after creation
+    text = property(get_text,set_text)
+
     def __init__(
             self,
             pos,
@@ -124,6 +134,7 @@ class Button(object):
             pi / 2, 0,
             self.feathering
             )
+        self.label.render()
         self.label.blit(self.surface)
         pygame.draw.arc(
             self.surface,
