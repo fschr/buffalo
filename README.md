@@ -1,6 +1,6 @@
 # Buffalo
 
-Buffalo makes Pygame development *blazing* fast. It comes with a scene manager and an array of slim GUI objects (like buttons, text inputs, and more).
+Buffalo makes Pygame development *blazingly* fast. It comes with a scene manager and an array of slim GUI objects (like buttons, text inputs, and more).
 
 Check out our [Read the Docs](http://buffalo.readthedocs.org/en/latest/) for examples, documentation, and an installation guide.
 
