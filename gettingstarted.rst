@@ -1,10 +1,15 @@
 Installing Buffalo
 ==================
 
-To install Buffalo, simply download a copy of the source
+To install Buffalo, simply download a copy of the source via ssh
 ::
 
-    git clone https://github.com/gragas/buffalo/
+    git clone git@github.com:fschr/buffalo.git
+
+or via https
+::
+
+    git clone https://github.com/fschr/buffalo
 
 Navigate to cloned repository and install it (Buffalo is compatible with any version of Python greater than or equal to 2.5)
 ::
